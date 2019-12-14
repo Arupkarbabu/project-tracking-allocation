@@ -1,0 +1,137 @@
+
+sql command :
+
+
+
+CREATE TABLE studentdata1 (  
+studentid INT  NOT NULL,  
+clgid varchar (20) ,  ,  
+mname char (25),
+cpi char (25),
+sem char (25),
+email char (25),
+password char (25),
+prg_code char (25),
+drg_code char (25),
+PRIMARY KEY (studentid) ,
+FOREIGN KEY (p_code) REFERENCES program (p_code)  
+
+);  
+alter add commad;
+
+ALTER TABLE studentdata1  
+ADD CONSTRAINT fk_studentdata1
+FOREIGN KEY(drg_code)  
+REFERENCES department(d_code) ;
+
+
+ 
+
+
+CREATE TABLE admin (  
+ID INT  NOT NULL,  
+username varchar (20) ,  ,  
+passcode char (25),  
+PRIMARY KEY (ID)  
+);  
+
+
+
+CREATE TABLE facultydata1 (  
+fid INT  NOT NULL,  
+email varchar (20) ,  ,  
+password char (25),
+fname char (25),
+sname char (25),
+df_code char (25),
+PRIMARY KEY (studentid) ,
+FOREIGN KEY (df_code) REFERENCES department (d_code) 
+);  
+
+
+
+
+
+CREATE TABLE department (  
+  
+d_code varchar (20) ,  ,  
+d_name char (25),  
+PRIMARY KEY (d_code)  
+); 
+
+
+
+CREATE TABLE program (  
+  
+p_code varchar (20) ,  ,  
+p_name char (25),  
+PRIMARY KEY (p_code)  
+);
+
+CREATE TABLE projectdata1 (  
+  pid INT  NOT NULL,  
+name varchar (20) ,  ,  
+enable varchar (25),
+f_id varchar (25),
+PRIMARY KEY (pid),
+FOREIGN KEY (f_id) REFERENCES facultydata1 (fid)   
+);
+
+
+
+
+CREATE TABLE research_field (  
+  rid INT  NOT NULL,  
+rname varchar (20) ,  ,  
+PRIMARY KEY (rid) ,
+
+ FOREIGN KEY (rid) REFERENCES projectdata1 (pid)   
+);
+
+
+CREATE TABLE report (  
+  rpid INT  NOT NULL,  
+kpid varchar (20) ,
+ rreport varchar (25),
+PRIMARY KEY (rpid)  ,
+FOREIGN KEY (kpid) REFERENCES projectdata1 (pid)   
+
+);
+
+
+
+CREATE TABLE allocation (  
+pid INT  NOT NULL,  
+rollno varchar (20) ,  ,  
+aname char (25),
+cpi char (25),
+pname char (25),
+rname char (25),
+fname char (25),
+sname char (25),
+email char (25),
+fiid char (25),
+PRIMARY KEY (pid) 
+FOREIGN KEY (fiid) REFERENCES facultydata1 (fid)   
+);  
+
+
+
+CREATE TABLE com (  
+  sl INT  NOT NULL,  
+pc varchar (20) ,
+ dc varchar (25),
+PRIMARY KEY (sl)  ,
+FOREIGN KEY (kpid) REFERENCES program (p_code)   
+
+);
+
+alter add commad;
+
+ALTER TABLE com  
+ADD CONSTRAINT fk_com
+FOREIGN KEY(dc)  
+REFERENCES department(d_code) ;
+
+--------------------****-----------------------------------------
+
